@@ -20,10 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h&4w803e*ac3$e7dzmh99%#-4z&$%7yk*+22n5owdf2rcuu!7='
+# SECRET_KEY = 'django-insecure-h&4w803e*ac3$e7dzmh99%#-4z&$%7yk*+22n5owdf2rcuu!7='
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 AUTH_USER_MODEL = 'api.User'
@@ -119,7 +121,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #     }
 # }
 
+import os
 import dj_database_url
+from pathlib import Path
 
 DATABASES = {
     'default': dj_database_url.config(
